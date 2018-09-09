@@ -22,7 +22,7 @@ public class Chapter2Assignment {
 		double RateOfGrowth = input.nextDouble()/100;
 		System.out.println(RateOfGrowth);
 		DecimalFormat df = new DecimalFormat("###.##");
-		double value = MostRecentPerShareDividend*(1 + RateOfGrowth)*(DiscountRate-RateOfGrowth)*100;
+		double value = MostRecentPerShareDividend*(1 + RateOfGrowth)/(DiscountRate-RateOfGrowth);
 		//  export value of one share of common stock
 		System.out.print("The value of one share of common stock is:" + "$"+ df.format(value));
 	}
