@@ -1,0 +1,111 @@
+public class GroupProject {
+public static void main(String[] args){
+//try catch method 
+  try {
+     //prompt user for credit card number
+     String num =   JOptionPane.showInputDialog(null,"Enter the credit card number."
+    ,"Credit Card Validator for CIS 3260",JOptionPane.QUESTION_MESSAGE);
+     //convert string to long
+     long number = Long.parseLong(num);
+     
+     // message if valid
+     if (isValid(number))
+     {
+        String output = number + " is Valid";
+        JOptionPane.showMessageDialog(null, output);
+       
+     }
+     //message if not valid 
+     else
+     {
+        String output = number + " is Invalid";
+        JOptionPane.showMessageDialog(null, output);
+     }
+  }
+     catch (Exception KP) {
+    System.out.println("User did not enter information");
+     
+     }
+  }
+  
+  //Method for the Mod10 Check
+  public static boolean isValid(long number)
+  {  
+  return (checkforlength(number) >= 13 &&  
+               checkforlength(number) <= 16) &&  
+               (validMatchedPrefix(number, 37) ||  
+                validMatchedPrefix(number, 6) ||  
+                validMatchedPrefix(number, 5) ||  
+                validMatchedPrefix(number, 4)) &&  
+              ((addEvenPlaces(number) +  
+                addOddPlaces(number)) % 10 == 0); 
+  
+  }
+  //add all single-digit numbers 
+  //checkforlength 
+  //start counter 
+  //subtract 2 per iteration
+  
+  public static int addEvenPlaces(long number) 
+    { 
+        int kb = 0; 
+        String num = number + ""; 
+        for (int i = checkforlength(number) - 2; i >= 0; i -= 2)  
+            kb += idDigit(Integer.parseInt(num.charAt(i) + "") * 2); 
+          
+        return kb; 
+    } 
+  // Return number if it is a single digit 
+    // return the sum of the two digits 
+  /*If the final sum is divisible by 10, 
+   * then the credit card number is valid. If it is not divisible by 10, the number is invalid. 
+   */
+  public static int idDigit(int number) 
+    { 
+        if (number < 9) 
+            return number; 
+        return number / 10 + number % 10; 
+    } 
+  
+  // Return the sum of odd-place digits in number  
+  public static int addOddPlaces(long number) 
+    { 
+        int sum = 0; 
+        String num = number + ""; 
+        for (int i = checkforlength(number) - 1; i >= 0; i -= 2)  
+            sum += Integer.parseInt(num.charAt(i) + "");         
+        return sum; 
+    } 
+  public static boolean validMatchedPrefix(long number, int d) 
+    { 
+        return idCorrectPrefix(number, checkforlength(d)) == d; 
+    } 
+  
+  //check for length I have named this variable after my professor as another security check.
+  //we created a method here because of the par will not allow us to use function length()
+  public static int checkforlength(long AG) 
+    { 
+        String num = AG + ""; 
+        return num.length(); 
+        
+        
+    } 
+  
+
+      /* Return the first  number of digits from  
+       number.(I use my initials here as an easter egg) If the number of digits in number 
+      is less than hgb, return number */
+  public static long idCorrectPrefix(long number, int hgb) 
+    { 
+        if (checkforlength(number) > hgb) { 
+            String num = number + ""; 
+            return Long.parseLong(num.substring(0, hgb)); 
+        } 
+        return number; 
+    } 
+  
+ 
+ 
+  
+  
+}
